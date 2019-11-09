@@ -58,6 +58,23 @@ class Credentials:
         function to check whether we can delete the credentials
         '''
         Credentials.credential_list.remove(self)
+
+    @classmethod
+    def find_by_account_name(cls, account_name):
+        '''
+        A method to search credentials for a given account name
+        '''
+
+        for credential in cls.credential_list:
+            if credential.account_name == account_name:
+
+                return credential
+
+
+    
+
+
+    
     
     
     
