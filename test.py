@@ -76,7 +76,18 @@ class TestCredential(unittest.TestCase):
     def tearDown(self):
         Credentials.credential_list = []
         User.users_list = []
+
+    def test_save_credentials(self):
+        '''
+        Test case that tests if the credentials have been saved
+        '''
+
+        self.new_credential.save_credentials() # Saving the new credentials
+        facebook = Credentials('maggie','facebook','1234')
+        facebook.save_credentials()
+        self.assertEqual(len(Credentials.credential_list),2)
         
+
 
 if __name__=='__main__':
     unittest.main()
