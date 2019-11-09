@@ -86,7 +86,19 @@ class TestCredential(unittest.TestCase):
         facebook = Credentials('maggie','facebook','1234')
         facebook.save_credentials()
         self.assertEqual(len(Credentials.credential_list),2)
-        
+
+    def test_delete_credentials(self):
+        '''
+        Test Case that tests if the user can delete the credentials
+        '''
+
+        self.new_credential.save_credentials()
+        facebook = Credentials('maggie','facebook','1234')
+        facebook.save_credentials()
+        facebook.delete_credentials()
+        self.assertEqual(len(Credentials.credential_list),1)
+    
+            
 
 
 if __name__=='__main__':
