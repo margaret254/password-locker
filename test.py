@@ -97,8 +97,19 @@ class TestCredential(unittest.TestCase):
         facebook.save_credentials()
         facebook.delete_credentials()
         self.assertEqual(len(Credentials.credential_list),1)
-    
-            
+
+    def test_find_by_account_name(self):
+        '''
+        Test to check if the find by account type method returns the correct credential
+        '''
+
+        self.new_credential.save_credentials()
+        facebook = Credentials('maggie','facebook','1234')
+        facebook.save_credentials()
+        credential_found = Credentials.find_by_account_name('facebook')
+        self.assertEqual(credential_found.account_name,'facebook')
+
+
 
 
 if __name__=='__main__':
