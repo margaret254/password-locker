@@ -52,6 +52,12 @@ class Credentials:
         function to save user credentials
         '''
         Credentials.credential_list.append(self)
+
+    def delete_credentials(self):
+        '''
+        function to check whether we can delete the credentials
+        '''
+        Credentials.credential_list.remove(self)
     
     
     
