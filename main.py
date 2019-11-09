@@ -30,3 +30,25 @@ class User:
         User.user_list.remove(self)
 
 
+class Credentials:
+    '''
+    class that generates credentials for the user
+    '''
+
+    credential_list = [] #Empty Credential list
+    user_credentials_list = []
+
+    def __init__(self,user_name,account_name,password):
+        '''
+        Method where we define properties for our objects
+        '''
+
+        self.user_name = user_name
+        self.account_name = account_name
+        self.password = password
+    
+    
+    
+    
+    
+    
