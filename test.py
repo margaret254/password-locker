@@ -116,6 +116,25 @@ class TestCredential(unittest.TestCase):
         '''
         self.assertEqual(Credentials.display_all_credentials(),Credentials.credential_list)
 
+    def test_copy_credentials(self):
+        '''
+        A test method to see if the user can copy credentials to the clipboard
+        '''
+
+        self.new_credential.save_credentials()
+        facebook = Credentials('maggie','facebook','1234')
+        facebook.save_credentials()
+        found_credential = None
+        for credential in Credentials.credential_list:
+            found_credential = Credentials.find_by_account_name(
+                credential.account_name
+            )
+            return pyperclip.copy(found_credential.password)
+        Credentials.copy_credentials(self.new_credential.account_name)
+        self.assertEqual('1234',pyperclip.paste())
+        print(pyperclip.paste())
+
+
 
 
     # def test_account_exists(self):
