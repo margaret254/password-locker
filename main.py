@@ -70,6 +70,26 @@ class Credentials:
 
                 return credential
 
+    @classmethod
+    def display_all_credentials(cls):
+        '''
+        method where the user views their credentials
+        '''
+        return cls.credential_list
+
+    # @classmethod
+    # def account_exist(cls,password):
+    #     '''
+    #     Method that checks if the contact exists from the Credentials list
+    #     '''
+
+    #     for account in cls.credential_list:
+    #         if account.password == password:
+    #             return True
+    #             return False
+
+
+                
 
     
 
