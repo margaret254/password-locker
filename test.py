@@ -1,6 +1,7 @@
 import unittest 
 from main import User
 from main import Credentials
+import pyperclip
 
 class TestUser(unittest.TestCase):
 
@@ -108,6 +109,25 @@ class TestCredential(unittest.TestCase):
         facebook.save_credentials()
         credential_found = Credentials.find_by_account_name('facebook')
         self.assertEqual(credential_found.account_name,'facebook')
+
+    def test_display_all_credentials(self):
+        '''
+        Method where the user can view various account credentials
+        '''
+        self.assertEqual(Credentials.display_all_credentials(),Credentials.credential_list)
+
+
+
+    # def test_account_exists(self):
+    #     '''
+    #     Test to check if a certain account exists
+    #     '''
+
+    #     self.new_credential.save_credentials()
+    #     test_account = Credentials('maggie','facebook','1234')
+    #     test_account.save_credentials()
+    #     account_exists = Credentials.account_exist('facebook')
+    #     self.assertTrue(account_exists)
 
 
 
