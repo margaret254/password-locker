@@ -1,3 +1,7 @@
+import pyperclip
+import random
+import string
+
 class User:
     '''
     Class that generates new instances of users
@@ -38,6 +42,19 @@ class Credentials:
     credential_list = [] #Empty Credential list
     user_credentials_list = []
 
+    @classmethod
+    def check_user(cls,user_name,password):
+        '''
+        Method that checks if the name and password entered match entries
+        in the user_list
+        '''
+        current_user = ''
+        for user in  User.user_list:
+            if (user.user_name == user_name and user.password == password):
+                current_user = user.user_name
+                return current_user
+
+
     def __init__(self,user_name,account_name,password):
         '''
         Method where we define properties for our objects
@@ -59,6 +76,17 @@ class Credentials:
         '''
         Credentials.credential_list.remove(self)
 
+
+    @classmethod
+    def rand_pass(cls,size):
+        '''
+        Takes in random choices from digits and ascii_letters
+        '''
+        generate_pass = ''.join([random.choice(string.ascii_letters + string.digits) for n in range(size)])
+
+        return generate_pass
+
+
     @classmethod
     def find_by_account_name(cls, account_name):
         '''
@@ -76,6 +104,14 @@ class Credentials:
         method where the user views their credentials
         '''
         return cls.credential_list
+
+    @classmethod
+    def copy_credentials(cls,account_name):
+        '''
+        method that copies the creentials after the account name has been entered.
+        '''
+        found_credential = cls.find_by_account_name(account_name)
+        return pyperclip.copy(found_credential.password)
 
     # @classmethod
     # def account_exist(cls,password):
