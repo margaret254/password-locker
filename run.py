@@ -112,8 +112,8 @@ def main():
 
             elif password_choice == 'gp':
                 print("Enter the length of the password you wish to generate eg 9 ")
-                # pass_len = int(input())
-                # password = rand_pass(pass_len)
+                pass_len = int(input())
+                password = rand_pass(pass_len)
                 
 
             elif password_choice == 'ex':
@@ -141,7 +141,7 @@ def main():
             username = input()
             print("Enter your password...")
             password = input()
-            account_exist = check_user(user_name, password)
+            account_exist = authenticate_user(user_name, password)
             if account_exist == user_name:
                 print('\n')
                 print(
