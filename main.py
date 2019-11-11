@@ -56,13 +56,13 @@ class Credentials:
                 return current_user
 
 
-    def __init__(self,user_name,account_name,password):
+    def __init__(self,user_name,site_name,password):
         '''
         Method where we define properties for our objects
         '''
 
         self.user_name = user_name
-        self.account_name = account_name
+        self.site_name = site_name
         self.password = password
 
     def save_credentials(self):
@@ -89,13 +89,13 @@ class Credentials:
 
 
     @classmethod
-    def find_by_account_name(cls, account_name):
+    def find_by_site_name(cls, site_name):
         '''
         A method to search credentials for a given account name
         '''
 
         for credential in cls.credential_list:
-            if credential.account_name == account_name:
+            if credential.site_name == site_name:
 
                 return credential
 
@@ -107,24 +107,14 @@ class Credentials:
         return cls.credential_list
 
     @classmethod
-    def copy_credentials(cls,account_name):
+    def copy_credentials(cls,site_name):
         '''
-        method that copies the creentials after the account name has been entered.
+        method that copies the credentials after the account name has been entered.
         '''
-        found_credential = cls.find_by_account_name(account_name)
+        found_credential = cls.find_by_site_name(site_name)
         return pyperclip.copy(found_credential.password)
 
-    # @classmethod
-    # def account_exist(cls,password):
-    #     '''
-    #     Method that checks if the contact exists from the Credentials list
-    #     '''
-
-    #     for account in cls.credential_list:
-    #         if account.password == password:
-    #             return True
-    #             return False
-
+    
 
                 
 

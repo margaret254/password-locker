@@ -10,26 +10,26 @@ def create_user(first_name,last_name,phone_number,email,user_name,password):
     new_user = (first_name,last_name,phone_number,email,user_name,password)
     return new_user
 
-def create_credential(user_name,account_name,password):
+def create_credential(user_name,site_name,password):
     '''
     function to create a new user account
     '''
-    new_credential = Credentials(user_name,account_name,password)
+    new_credential = Credentials(user_name,site_name,password)
     return new_credential
 
 def save_user(user):
     '''
     function to save a new user
     '''
-    User.save_user(user)
+    return User.save_user(user)
 
 def save_credentials(credential):
     '''
     function to save a new user account
     '''
-    Credentials.save_credentials(credential)
+    return Credentials.save_credentials(credential)
 
-def authenticate_user(username,password):
+def authenticate_user(user_name,password):
     '''
     Function that verifies the existence of the user before creating credentials
     '''
@@ -53,25 +53,25 @@ def delete_credential(credentials):
     '''
     funtion to delete credentials from the credential_list
     '''
-    credentials.delete_credentials()
+    Credentials.delete_credentials()
 
-def copy_credentials(account_name):
+def copy_credentials(site_name):
     '''
     method that enable us to copy credentials to the clipboard.
     '''
-    return Credentials.copy_credentials(account_name)
+    return Credentials.copy_credentials(site_name)
 
-def find_by_account_name(account_name):
+def find_by_site_name(site_name):
     '''
     function that helps us to find credentials for a certain account
     '''
-    return Credentials.find_by_account_name(account_name)
+    return Credentials.find_by_site_name(site_name)
 
 
 
 def main():
-    guest_name = input("Whats Your Name?")
-    print(f"Hello {guest_name},welcome to Password Locker:")
+    user_name = input("Whats Your Name?")
+    print(f"Hello {user_name},welcome to Password Locker:")
     print('\n')
     while True:
         print ('\n')
@@ -112,8 +112,8 @@ def main():
 
             elif password_choice == 'gp':
                 print("Enter the length of the password you wish to generate eg 9 ")
-                pass_len = int(input())
-                password = rand_pass(pass_len)
+                # pass_len = int(input())
+                # password = rand_pass(pass_len)
                 
 
             elif password_choice == 'ex':
@@ -126,7 +126,7 @@ def main():
                 
                 
             # Create and save new user
-            save_user(create_user(first_name, last_name, phone_number,email,username, password))
+            save_user(create_user(first_name, last_name, phone_number,email,user_name, password))
             print('\n')
             print(f"New Account for {first_name} {last_name} created.")
             print('\n')
@@ -141,8 +141,8 @@ def main():
             username = input()
             print("Enter your password...")
             password = input()
-            account_exist = verify_user(username, password)
-            if account_exist == username:
+            account_exist = check_user(user_name, password)
+            if account_exist == user_name:
                 print('\n')
                 print(
                     f"Welcome to your Password locker account {first_name}: \n Please choose an option to continue...")
@@ -185,7 +185,7 @@ def main():
 
                         
 
-                        save_credentials(create_credential(user_name, site_name, password))
+                        save_credentials(create_credential(username, site_name, password))
                         print(' \n')
                         print(
                             f'Credential Created:\n Account type: {site_name}  \n Account Username: {user_name} \n Account Password: {password}')
@@ -207,7 +207,7 @@ def main():
                             search_credential = find_by_site_name(site_name)
                             print(f"Account Name : {search_credential.site_name}")
                             print('-' * 50)
-                            print(f"User Name: {search_credential.user_name} Password :{search_credential.password}")
+                            print(f"User Name: {search_credential.username} Password :{search_credential.password}")
                             print('-' * 50)
                         else:
                             print("That Credential does not exist")
@@ -243,7 +243,7 @@ def main():
 
             else:
                 print(
-                    f"Sorry, we couldn\'t' find any account under the name {username}")
+                    f"Sorry, we couldn\'t' find any account under the name {user_name}")
                 print('\n')
         elif short_code == 'ex':
             print('Goodbye...')

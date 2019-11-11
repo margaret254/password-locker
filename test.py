@@ -72,7 +72,7 @@ class TestCredential(unittest.TestCase):
         To test if the object is initialized properly
         '''
         self.assertEqual(self.new_credential.user_name,"serah")
-        self.assertEqual(self.new_credential.account_name,"facebook")
+        self.assertEqual(self.new_credential.site_name,"facebook")
         self.assertEqual(self.new_credential.password,"1234")
 
     def tearDown(self):
@@ -100,7 +100,7 @@ class TestCredential(unittest.TestCase):
         facebook.delete_credentials()
         self.assertEqual(len(Credentials.credential_list),1)
 
-    def test_find_by_account_name(self):
+    def test_find_by_site_name(self):
         '''
         Test to check if the find by account type method returns the correct credential
         '''
@@ -108,8 +108,8 @@ class TestCredential(unittest.TestCase):
         self.new_credential.save_credentials()
         facebook = Credentials('serah','facebook','1234')
         facebook.save_credentials()
-        credential_found = Credentials.find_by_account_name('facebook')
-        self.assertEqual(credential_found.account_name,'facebook')
+        credential_found = Credentials.find_by_site_name('facebook')
+        self.assertEqual(credential_found.site_name,'facebook')
 
     def test_display_all_credentials(self):
         '''
@@ -127,27 +127,18 @@ class TestCredential(unittest.TestCase):
         facebook.save_credentials()
         found_credential = None
         for credential in Credentials.credential_list:
-            found_credential = Credentials.find_by_account_name(
-                credential.account_name
+            found_credential = Credentials.find_by_site_name(
+                credential.site_name
             )
             return pyperclip.copy(found_credential.password)
-        Credentials.copy_credentials(self.new_credential.account_name)
+        Credentials.copy_credentials(self.new_credential.site_name)
         self.assertEqual('1234',pyperclip.paste())
         print(pyperclip.paste())
 
 
 
 
-    # def test_account_exists(self):
-    #     '''
-    #     Test to check if a certain account exists
-    #     '''
-
-    #     self.new_credential.save_credentials()
-    #     test_account = Credentials('maggie','facebook','1234')
-    #     test_account.save_credentials()
-    #     account_exists = Credentials.account_exist('facebook')
-    #     self.assertTrue(account_exists)
+    
 
 
 
