@@ -49,10 +49,11 @@ class Credentials:
         Method that checks if the name and password entered match entries
         in the user_list
         '''
-        for user in  Credentials.credential_list:
+        current_user = ''
+        for user in  User.user_list:
             if (user.user_name == user_name and user.password == password):
-                return True
-        return False
+                current_user = user_name
+                return current_user
 
 
     def __init__(self,user_name,site_name,password):
@@ -98,12 +99,17 @@ class Credentials:
 
                 return credential
 
+
     @classmethod
-    def display_all_credentials(cls):
+    def display_credentials(cls,user_name):
         '''
-        method where the user views their credentials
+        Class method to display the list of credentials saved
         '''
-        return cls.credential_list
+        user_credentials_list = []
+        for credential in cls.credential_list:
+            if credential.user_name == user_name:
+                user_credentials_list.append(credential)
+        return user_credentials_list
 
     @classmethod
     def copy_credentials(cls,site_name):

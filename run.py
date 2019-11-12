@@ -7,7 +7,7 @@ def create_user(first_name,last_name,phone_number,email,user_name,password):
     '''
     function to create new user account
     '''
-    new_user = (first_name,last_name,phone_number,email,user_name,password)
+    new_user = User(first_name,last_name,phone_number,email,user_name,password)
     return new_user
 
 def create_credential(user_name,site_name,password):
